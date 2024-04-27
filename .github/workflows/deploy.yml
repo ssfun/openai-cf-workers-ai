@@ -1,9 +1,7 @@
 name: Deploy Cloudflare Worker
 
 on:
-  push:
-    branches:
-      - main  # or the branch you want to deploy from
+  workflow_dispatch:
 
 jobs:
   deploy:
