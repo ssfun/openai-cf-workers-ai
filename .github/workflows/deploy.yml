@@ -20,7 +20,7 @@ jobs:
         run: yarn
 
       - name: Install Wrangler
-        run: npm install -g @cloudflare/wrangler
+        run: npm install -g wrangler
 
       - name: Set Cloudflare Account ID
         run: |
