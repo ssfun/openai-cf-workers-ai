@@ -35,8 +35,8 @@ jobs:
 
       - name: Set Secrets with Wrangler
         run: |
-          wrangler secret put ACCESS_TOKEN --value ${{ secrets.ACCESS_TOKEN }}
-          wrangler secret put CLOUDFLARE_API_TOKEN --value ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          echo "${{ secrets.ACCESS_TOKEN }}" | wrangler secret put ACCESS_TOKEN
+          echo "${{ secrets.CLOUDFLARE_API_TOKEN }}" | wrangler secret put CLOUDFLARE_API_TOKEN
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
