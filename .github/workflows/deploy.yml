@@ -14,10 +14,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # 根据需要选择 Node.js 版本
+          node-version: '16'
 
       - name: Install dependencies
         run: yarn
+
+      - name: Install Wrangler
+        run: npm install -g @cloudflare/wrangler
 
       - name: Set Cloudflare Account ID
         run: |
@@ -30,16 +33,10 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
-      - name: Set Secrets
+      - name: Set Secrets with Wrangler
         run: |
-          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
-          echo "CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }}" >> $GITHUB_ENV
-        shell: bash
-
-      - name: Configure Wrangler Secrets
-        run: |
-          wrangler secret put ACCESS_TOKEN --value $ACCESS_TOKEN
-          wrangler secret put CLOUDFLARE_API_TOKEN --value $CLOUDFLARE_API_TOKEN
+          wrangler secret put ACCESS_TOKEN --value ${{ secrets.ACCESS_TOKEN }}
+          wrangler secret put CLOUDFLARE_API_TOKEN --value ${{ secrets.CLOUDFLARE_API_TOKEN }}
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
