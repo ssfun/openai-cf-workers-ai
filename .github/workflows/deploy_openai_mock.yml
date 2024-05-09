@@ -30,7 +30,6 @@ jobs:
       - name: Set Cloudflare Account ID
         run: |
           sed -i "s/true/false/g" wrangler.toml
-          cat wrangler.toml
         working-directory: ./cloudflare-workers-openai-mock
 
       - name: Deploy to Cloudflare Workers
@@ -42,7 +41,7 @@ jobs:
 
       - name: Set Secrets with Wrangler
         run: |
-          npx wrangler secret put token
+          echo "${{ secrets.ACCESS_TOKEN }}" | npx wrangler secret put token ACCESS_TOKEN
         shell: bash
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
