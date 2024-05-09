@@ -20,7 +20,7 @@ jobs:
         run: git clone https://github.com/pew/cloudflare-workers-openai-mock.git
 
       - name: Install dependencies
-        run: npm install
+        run: npm install -g wrangler
         working-directory: ./cloudflare-workers-openai-mock
 
       - name: Set Cloudflare Account ID
