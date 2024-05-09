@@ -42,7 +42,7 @@ jobs:
 
       - name: Set Secrets with Wrangler
         run: |
-          echo "${{ secrets.ACCESS_TOKEN }}" | wrangler secret put ACCESS_TOKEN
+          npx wrangler secret put token
         shell: bash
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
