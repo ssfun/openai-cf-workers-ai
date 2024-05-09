@@ -2,9 +2,9 @@ name: Deploy Cloudflare Worker
 
 on:
   workflow_dispatch:
-  #push:
-  #  branches:
-  #    - main  # 或者是您用于部署的任何分支
+  push:
+    branches:
+      - main  # 或者是您用于部署的任何分支
 
 jobs:
   deploy:
